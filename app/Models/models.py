@@ -8,14 +8,16 @@ from PIL import Image
 
 # Vehicle Detection
 def vehicle_detection():
-    vehicle_model = YOLO(r"app/Models/Yolo_models/yolov8n.pt")
+    vehicle_model_path = Path(__file__).parent / "Models" / "Yolo_models" / "yolov8n.pt"
+    vehicle_model = YOLO(str(vehicle_model_path))
     vehicle_model.to('cuda' if torch.cuda.is_available() else 'cpu')
     return vehicle_model
 
 
 # Plate detection
 def plate_detection():
-    plate_model = YOLO(r"app/Models/Yolo_models/best_number_plate_model.pt")
+    plate_model_path = Path(__file__).parent / "Models" / "Yolo_models" / "best_number_plate_model.pt"
+    plate_model = YOLO(str(plate_model_path))
     plate_model.to('cuda' if torch.cuda.is_available() else 'cpu')
     return plate_model
 
