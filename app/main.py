@@ -17,7 +17,8 @@ async def upload_image(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file, buffer)
         
     plates = run_anpr(file_path)
-
+    if plates is None:
+        return {"message": "No number plate detected or OCR failed", "status": "ERROR"}
     return {
         "status": plates['status'],
         "file": file.filename,

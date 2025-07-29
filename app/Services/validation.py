@@ -24,7 +24,7 @@ def correct_plate_text(ocr_text: str) -> str:
     
     corrections = {
         '0': 'O', '1': 'I', '2': 'Z', '5': 'S', '6': 'G', '8': 'B', '7':'T', '4':'L',
-        'O': '0', 'I': '1', 'Z': '2', 'S': '5', 'G': '6', 'B': '8', 'T':'7', 'L':'4', 'A':'4'
+        'O': '0', 'I': '1', 'Z': '2', 'S': '5', 'G': '6', 'B': '8', 'T':'7', 'L':'4', 'A':'4', 'D':'0'
     }
     
     cleaned = re.sub(r'[^A-Z0-9]', '', ocr_text.upper())
@@ -36,19 +36,19 @@ def correct_plate_text(ocr_text: str) -> str:
         
         elif i < 4:
             if(i>2 and len(cleaned)==9):
-                corrected += corrections.get(char, char) if char in '7012568' else char
+                corrected += corrections.get(char, char) if char in '0125678' else char
             else:
                 corrected += corrections.get(char, char) if char in 'AOIZSGBL' else char
                 
         elif i < 7:
             if (i>5 and len(cleaned)==10):
-                corrected += corrections.get(char, char) if char in 'TOIZSGBAL' else char
+                corrected += corrections.get(char, char) if char in 'ABDGILOSTZ' else char
             elif(i>4 and len(cleaned)==9):
-                corrected += corrections.get(char, char) if char in 'TOIZSGBAL' else char
+                corrected += corrections.get(char, char) if char in 'ABDGILOSTZ' else char
             else:
-                corrected += corrections.get(char, char) if char in '7012568' else char
+                corrected += corrections.get(char, char) if char in '0125678' else char
         
         else:#7,8,9,10,11
-            corrected += corrections.get(char, char) if char in 'TOIZSGBAL' else char
+            corrected += corrections.get(char, char) if char in 'ABDGILOSTZ' else char
     
     return corrected

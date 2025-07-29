@@ -30,7 +30,7 @@ def view_result(frame, vehicle_crop, plate_crop, corrected_text, is_valid):
     
     
     # Detected Number Plate
-    display_plate = cv2.cvtColor(plate_crop, cv2.COLOR_GRAY2BGR)
+    display_plate = cv2.cvtColor(plate_crop, cv2.COLOR_BGR2RGB)
     display_plate = resize_frame(display_plate, 260, 90)
     display_plate = frame_border_padding(display_plate, 90, 90, 0, 0, (255, 255, 255))
     
