@@ -10,7 +10,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 # Vehicle Detection
 def vehicle_detection():
-    vehicle_model_path = BASE_DIR / "Models" / "yolov8n.pt"
+    vehicle_model_path = BASE_DIR / "yolov8n.pt"
     vehicle_model = YOLO(str(vehicle_model_path))
     vehicle_model.to('cuda' if torch.cuda.is_available() else 'cpu')
     return vehicle_model
@@ -18,7 +18,7 @@ def vehicle_detection():
 
 # Plate detection
 def plate_detection():
-    plate_model_path = BASE_DIR / "Models" / "best_number_plate_model.pt"
+    plate_model_path = BASE_DIR / "best_number_plate_model.pt"
     plate_model = YOLO(str(plate_model_path))
     plate_model.to('cuda' if torch.cuda.is_available() else 'cpu')
     return plate_model
