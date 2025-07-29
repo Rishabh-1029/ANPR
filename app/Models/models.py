@@ -4,11 +4,13 @@ import cv2
 import easyocr
 import pytesseract
 from PIL import Image
+from pathlib import Path
 
 
+BASE_DIR = Path(__file__).resolve().parent
 # Vehicle Detection
 def vehicle_detection():
-    vehicle_model_path = app/Models/yolov8n.pt
+    vehicle_model_path = BASE_DIR / "Models" / "yolov8n.pt"
     vehicle_model = YOLO(str(vehicle_model_path))
     vehicle_model.to('cuda' if torch.cuda.is_available() else 'cpu')
     return vehicle_model
@@ -16,7 +18,7 @@ def vehicle_detection():
 
 # Plate detection
 def plate_detection():
-    plate_model_path = app/Models/best_number_plate_model.pt
+    plate_model_path = BASE_DIR / "Models" / "best_number_plate_model.pt"
     plate_model = YOLO(str(plate_model_path))
     plate_model.to('cuda' if torch.cuda.is_available() else 'cpu')
     return plate_model
@@ -58,11 +60,11 @@ def tess_ocr_reader():
                    top_text = pytesseract.image_to_string(Image.fromarray(top_half), config = config).strip()  
                    bottom_text = pytesseract.image_to_string(Image.fromarray(bottom_half), config = config).strip()
                    
-                   print(f"Top text : {top_text}")
-                   print(f"Bottom text : {bottom_text}")
+                   # print(f"Top text : {top_text}")
+                   # print(f"Bottom text : {bottom_text}")
                    
                    full_text = top_text + bottom_text
-                   print(f"Full text : {full_text}")
+                   # print(f"Full text : {full_text}")
                    
                else:
                    
