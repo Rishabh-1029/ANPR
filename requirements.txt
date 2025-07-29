@@ -1,11 +1,10 @@
-torch
-ultralytics
-cv2
+torch>=2.0.0
+ultralytics>=8.0.0
+opencv-python
 easyocr
 pytesseract
-PIL
-sqlalchemy
+Pillow  
+SQLAlchemy>=1.4
 numpy
-uvicorn
+uvicorn[standard]  
 fastapi
-shutil
