@@ -3,6 +3,7 @@ import torch
 import cv2
 import easyocr
 import pytesseract
+from pathlib import Path
 from PIL import Image
 
 
